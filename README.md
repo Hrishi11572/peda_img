@@ -73,10 +73,10 @@ pip install peda_img
 import peda_img as pimg
 
 # Example 
-img = handle_image("peda_img/test_images/test2.png")
-grey = convert_to_gray(img)
+img = pimg.handle_image("peda_img/test_images/test2.png")
+grey = pimg.convert_to_gray(img)
 # Applying gaussian
-show_image(gaussian_smoothing(grey, kernel_size=3))
+pmig.show_image(pimg.gaussian_smoothing(grey, kernel_size=3))
 ```
 
 ---
