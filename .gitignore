@@ -1,0 +1,24 @@
+# 1. Ignore virtual environments
+.venv/
+venv/
+
+# 2. Python cache & compiled trash
+__pycache__/
+*.pyc
+
+# 3. System junk
+.DS_Store
+Thumbs.db
+
+# 4. Packaging output (PyPI build artifacts)
+build/
+dist/
+*.egg-info/
+
+# 5. Development scratch files
+__dev_playground__.py
+utils2.py
+
+# 6. Test images are fine to keep, but prevent them bloating repo
+tests/test_images/*
+!tests/test_images/.gitkeep   # (allows empty folder tracking)

@@ -1,0 +1,90 @@
+# **peda_img : A Lightweight Image Processing Toolkit for Python**
+
+`peda_img` is a lightweight, beginner-friendly image processing library built for fast experimentation and teaching.
+It focuses on simplicity, clean function names, and easy-to-understand code, making it useful both for quick image tasks and for pedagogical environments such as introductory image processing courses.
+
+---
+
+##  Features (Planned & Implemented)
+
+### **Core Utilities**
+
+* Convert color images to grayscale and binary
+* Basic I/O helpers (read, write, display)
+* Plot and analyze histograms
+* Image thresholding
+
+### **Filtering & Enhancement**
+
+* Convolution using masks
+* Convolution using FFT (planned)
+* Contrast enhancement
+* Histogram equalization
+* Smoothing filters (Gaussian, median, weighted median)
+* Sharpening and Laplacian operators
+
+### **Edge and Gradient Detection**
+
+* Prewitt and Sobel (horizontal & vertical)
+* Second-order derivatives
+* Marr–Hildreth edge detector (planned)
+* Canny edge detector (planned)
+
+### **Segmentation & Classification**
+
+* Otsu thresholding (planned)
+* K-means clustering for image segmentation
+* Mean-Shift clustering (planned)
+* EM/Bayesian pixel classification (planned)
+
+### **Frequency Domain**
+
+* FFT & DFFT utilities (planned)
+* Low-pass / high-pass filters (planned)
+* Wiener filtering and restoration (planned)
+
+---
+
+## Project Roadmap
+
+| Stage  | Goal                                                    |
+| ------ | ------------------------------------------------------- |
+| Part 1 | Basic conversions, contour extraction, histogram tools  |
+| Part 2 | Convolution, enhancement techniques, gradient operators |
+| Part 3 | Automatic segmentation & clustering                     |
+| Part 4 | Advanced edge detection and EM classification           |
+| Part 5 | Frequency-domain processing & restoration filters       |
+
+---
+
+## Installation (when it’s live)
+
+```bash
+pip install peda_img
+```
+
+*(Currently under development. Not on PyPI yet.)*
+
+---
+
+## Usage Example
+
+```python
+import peda_img as pimg
+
+# Example 
+img = handle_image("peda_img/test_images/test2.png")
+grey = convert_to_gray(img)
+# Applying gaussian
+show_image(gaussian_smoothing(grey, kernel_size=3))
+```
+
+---
+
+## Contribution
+
+This library is early-stage but open to improvements, bug reports, and algorithm implementations.
+Ideal for students learning image processing or developers wanting simple utilities without heavy dependencies.
+
+---
+
