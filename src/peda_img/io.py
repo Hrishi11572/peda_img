@@ -128,7 +128,7 @@ def save_image(img: np.ndarray, filename:str = "default.png")->None:
 
 
 
-def plot_img_hist(img : np.ndarray, channel : str ="all", curve_type="boxy" ,save: bool = False, filename : str | None = None)->None: 
+def plot_img_hist(img : np.ndarray, channel : str ="gray", curve_type="boxy" ,save: bool = False, filename : str | None = None)->None: 
     '''
     Docstring for plot_img_hist
     
@@ -200,26 +200,29 @@ def plot_img_hist(img : np.ndarray, channel : str ="all", curve_type="boxy" ,sav
             fig.savefig(filename,dpi=300)
             
         return None 
-        
-    if img.ndim == 2 and channel != "gray":
-        raise ValueError("Cannot request RGB histogram from a grayscale image.")
-  
-    if channel == "gray": 
-        red = img[:,:,0]
-        green = img[:,:,1]
-        blue = img[:,:,2]
-        gray = (0.299 * red + 0.587 * green + 0.114 * blue).astype(np.uint8)
-        
-        plot_boxy_histogram(img=gray,t=(),save=save,filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img=gray,t=(),save=save,filename=filename)
-        
-    elif channel == "r": 
-        plot_boxy_histogram(img, t=(0,), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(0,), save=save, filename=filename)
-    elif channel == "g":
-        plot_boxy_histogram(img, t=(1,), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(1,), save=save, filename=filename)
-    elif channel == "b": 
-        plot_boxy_histogram(img, t=(2,), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(2,), save=save, filename=filename)
-    elif channel == "all":
-        plot_boxy_histogram(img, t=(0,1,2), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(0,1,2), save=save, filename=filename)
+    
+    if img.ndim == 2: 
+        ''' the user wants to see the gray scale histogram of a gray scale image '''
+        if channel != "gray": 
+            raise ValueError("Cannot request RGB histogram from a grayscale image.")
+        else: 
+            plot_boxy_histogram(img=img,t=(),save=save,filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img=img,t=(),save=save,filename=filename)
+    elif img.ndim == 3: 
+        ''' it is an RGB image, and the user might want to see any type of histogram'''
+        if channel == "gray": 
+            red = img[:,:,0]
+            green = img[:,:,1]
+            blue = img[:,:,2]
+            gray = (0.299 * red + 0.587 * green + 0.114 * blue).astype(np.uint8)
+            plot_boxy_histogram(img=gray,t=(),save=save,filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img=gray,t=(),save=save,filename=filename)
+        elif channel == "r": 
+            plot_boxy_histogram(img, t=(0,), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(0,), save=save, filename=filename)
+        elif channel == "g":
+            plot_boxy_histogram(img, t=(1,), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(1,), save=save, filename=filename)
+        elif channel == "b": 
+            plot_boxy_histogram(img, t=(2,), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(2,), save=save, filename=filename)
+        elif channel == "all":
+            plot_boxy_histogram(img, t=(0,1,2), save=save, filename=filename) if curve_type == "boxy" else plot_smooth_histogram(img, t=(0,1,2), save=save, filename=filename)
   
     return None
 
