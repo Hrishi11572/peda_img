@@ -1,5 +1,5 @@
 import numpy as np 
-from peda_img.io import handle_image, convert_to_gray, show_image
+from .io import convert_to_gray
 
 
 def threshold_image(img: np.ndarray | None = None, thresholdValue : int = 0, inverse : bool = False)->np.ndarray:

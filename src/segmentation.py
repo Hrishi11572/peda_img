@@ -1,7 +1,7 @@
 import statistics
 import numpy as np 
 import matplotlib.pyplot as plt 
-from peda_img.io import convert_to_gray
+from .io import convert_to_gray
 
     
 def kmeansOnHistogram(img: np.ndarray, k : int = 2)->np.ndarray: 
