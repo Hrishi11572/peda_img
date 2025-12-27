@@ -4,7 +4,7 @@ from .edges import gradient_prewitt, gradient_sobel, contour_extractor
 from .enhance import linear_contrast_enhancement, histogram_equalization
 from .filters import padd_image, conv2D, laplacian, sharpen_image, gaussian_filter, gaussian_smoothing
 from .io import handle_image, convert_to_gray, show_image, save_image, plot_img_hist
-from .threshold import threshold_image
+from .threshold import threshold_image, otsu_thresholding
 from .segmentation import kmeans_segmentation
 
 # 2. DEFINING EXPORTS
@@ -29,7 +29,8 @@ __all__ = [
     'save_image',
     'plot_img_hist',
     'threshold_image',
-    'kmeans_segmentation'
+    'kmeans_segmentation',
+    'otsu_thresholding'
 ]
 
 # Optional: Library Metadata

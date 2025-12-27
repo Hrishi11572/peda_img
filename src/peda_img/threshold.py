@@ -39,7 +39,7 @@ def threshold_image(img: np.ndarray | None = None, thresholdValue : int = 0, inv
     return result.astype(np.uint8)
 
 
-def otsu_thresholding(img: np.ndarray): 
+def otsu_thresholding(img: np.ndarray, inverse : bool = False): 
     def otsu_intraclass_variance(img: np.ndarray , threshold: int):
         ''' https://en.wikipedia.org/wiki/Otsu%27s_method ''' 
         return np.nansum(
@@ -55,4 +55,4 @@ def otsu_thresholding(img: np.ndarray):
         key=lambda th: otsu_intraclass_variance(img, th),
     )
     
-    return threshold_image(img=img, thresholdValue=otsu_threshold)
+    return threshold_image(img=img, thresholdValue=otsu_threshold, inverse=inverse)
