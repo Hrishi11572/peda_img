@@ -1,5 +1,6 @@
 import numpy as np 
 from .io import convert_to_gray
+import random
 
 
 def threshold_image(img: np.ndarray | None = None, thresholdValue : int = 0, inverse : bool = False)->np.ndarray:
@@ -36,3 +37,22 @@ def threshold_image(img: np.ndarray | None = None, thresholdValue : int = 0, inv
         result = np.where(gray_img < thresholdValue, 255, 0)
     
     return result.astype(np.uint8)
+
+
+def otsu_thresholding(img: np.ndarray): 
+    def otsu_intraclass_variance(img: np.ndarray , threshold: int):
+        ''' https://en.wikipedia.org/wiki/Otsu%27s_method ''' 
+        return np.nansum(
+            [
+                np.mean(cls) * np.var(img, where=cls)
+                #   weight   ·  intra-class variance
+                for cls in [img >= threshold, img < threshold]
+            ]
+        )
+    
+    otsu_threshold = min(
+        range(np.min(img) + 1, np.max(img)),
+        key=lambda th: otsu_intraclass_variance(img, th),
+    )
+    
+    return threshold_image(img=img, thresholdValue=otsu_threshold)
